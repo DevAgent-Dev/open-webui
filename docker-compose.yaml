@@ -25,7 +25,16 @@ services:
     environment:
       - 'OLLAMA_BASE_URL=http://ollama:11434'
       - 'WEBUI_SECRET_KEY='
+      - 'WEBUI_URL=${WEBUI_URL-https://chat.devagent.dev}'
       - 'ENABLE_OAUTH_PERSISTENT_CONFIG=True'
+      - 'ENABLE_OAUTH=True'
+      - 'ENABLE_OAUTH_SIGNUP=True'
+      - 'OAUTH_PROVIDER_NAME=DevAgent'
+      - 'OPENID_PROVIDER_URL=https://auth.devagent.dev/realms/devagent/.well-known/openid-configuration'
+      - 'OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID-chat-ui}'
+      - 'OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET-}'
+      - 'OPENID_REDIRECT_URI=${OPENID_REDIRECT_URI-https://chat.devagent.dev/oauth/oidc/login/callback}'
+      - 'OAUTH_SCOPES=openid email profile'
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped
