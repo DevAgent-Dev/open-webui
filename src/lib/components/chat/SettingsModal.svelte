@@ -1199,7 +1199,7 @@
 		</div>
 	</nav>
 
-	<div class="flex-1 min-w-0 min-h-0 p-4 md:px-5 flex flex-col">
+	<div class="settings-content flex-1 min-w-0 min-h-0 p-4 md:px-5 flex flex-col">
 		<div class="flex-1 min-h-0 overflow-hidden">
 			{#if selectedTab === 'general'}
 				<General
