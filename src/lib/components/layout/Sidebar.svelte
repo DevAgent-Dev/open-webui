@@ -1168,7 +1168,11 @@
 							id="sidebar-webui-name"
 							class=" self-center font-normal text-gray-700 dark:text-gray-200"
 						>
-							{$WEBUI_NAME}
+							{#if $WEBUI_NAME.endsWith('.Dev')}
+								{$WEBUI_NAME.slice(0, -4)}<span class="brand-tld">.Dev</span>
+							{:else}
+								{$WEBUI_NAME}
+							{/if}
 						</div>
 					</a>
 					<Tooltip

@@ -39,7 +39,7 @@
 			class="focus-ring relative h-4 min-h-4 w-7 shrink-0 cursor-pointer rounded-full mx-[0.0625rem] transition-colors duration-150 disabled:cursor-not-allowed {($settings?.highContrastMode ??
 			false)
 				? 'focus:outline focus:outline-2 focus:outline-gray-800! focus:dark:outline-gray-200!'
-				: ''} {state ? 'bg-gray-900 dark:bg-white' : 'bg-gray-300 dark:bg-gray-700'}"
+				: ''} {state ? 'bg-blue-500 dark:bg-white' : 'bg-gray-300 dark:bg-gray-700'}"
 			onCheckedChange={async () => {
 				await tick();
 				dispatch('change', state);

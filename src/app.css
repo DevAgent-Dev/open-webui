@@ -12,6 +12,15 @@
 	font-display: swap;
 }
 
+/* DevAgent.Dev CI §7 — Thai typeface (SIL OFL, see /assets/fonts/OFL-NotoSansThai.txt) */
+@font-face {
+	font-family: 'Noto Sans Thai';
+	src: url('/assets/fonts/NotoSansThai-Variable.ttf');
+	font-weight: 100 900;
+	font-display: swap;
+	unicode-range: U+0E00-0E7F;
+}
+
 /* --app-text-scale is updated via the UI Scale slider (Interface.svelte) */
 :root {
 	--app-text-scale: 1;
@@ -54,6 +63,79 @@ code {
 
 .app-muted {
 	@apply text-gray-500 dark:text-gray-400;
+}
+
+/* ── DevAgent.Dev corporate identity ────────────────────────────────────────
+   Applied on top of the utility classes (unlayered, so it wins the cascade).
+   Sources: ~/DevAgent.Dev/branding/DevAgent.Dev-Branding-CI.md and
+   ~/DevAgent.Dev/website/DESIGN_SYSTEM.md.
+
+   • Standard primary actions use Deep Ocean Blue (light theme). The dark theme
+     keeps its neutral white primary, since navy on near-black fails contrast and
+     the CI has no reverse palette yet.
+   • Inputs get a 1px Growth Green focus treatment.
+   • Text selection uses Growth Green with navy ink, as on devagent.dev.
+   ─────────────────────────────────────────────────────────────────────────── */
+html:not(.dark) button.bg-black,
+html:not(.dark) a.bg-black,
+html:not(.dark) [role='button'].bg-black,
+html:not(.dark) button.bg-gray-900,
+html:not(.dark) a.bg-gray-900 {
+	background-color: var(--color-brand-navy);
+	color: #fff;
+}
+
+html:not(.dark) button.bg-black:hover,
+html:not(.dark) a.bg-black:hover,
+html:not(.dark) [role='button'].bg-black:hover,
+html:not(.dark) button.bg-gray-900:hover,
+html:not(.dark) a.bg-gray-900:hover {
+	background-color: var(--color-brand-navy-dark);
+}
+
+html:not(.dark) button.bg-black:focus-visible,
+html:not(.dark) a.bg-black:focus-visible {
+	outline: 2px solid var(--color-brand-green);
+	outline-offset: 2px;
+}
+
+input:where(
+		[type='text'],
+		[type='email'],
+		[type='password'],
+		[type='url'],
+		[type='number'],
+		[type='search'],
+		[type='tel']
+	):focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+	outline: 1px solid var(--color-brand-green);
+	outline-offset: 0;
+}
+
+::selection {
+	background: color-mix(in srgb, var(--color-brand-green) 35%, transparent);
+	color: var(--color-brand-navy);
+}
+
+html.dark ::selection {
+	background: color-mix(in srgb, var(--color-brand-green) 40%, transparent);
+	color: #fff;
+}
+
+/* Sidebar wordmark: "DevAgent" in charcoal, ".Dev" in Deep Ocean Blue (as on devagent.dev) */
+#sidebar-webui-name {
+	font-weight: 600;
+	letter-spacing: -0.02em;
+}
+
+#sidebar-webui-name .brand-tld {
+	color: var(--color-brand-navy);
+}
+
+html.dark #sidebar-webui-name .brand-tld {
+	color: var(--color-blue-300);
 }
 
 .app-icon-muted {

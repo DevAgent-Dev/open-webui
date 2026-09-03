@@ -3,12 +3,52 @@
 @config '../tailwind.config.js';
 
 @theme {
+	/* DevAgent.Dev CI §7: Inter for Latin, Noto Sans Thai for Thai. Inter has no Thai
+	   glyphs, so Thai text falls through to Noto Sans Thai automatically. */
 	--font-sans:
-		var(--app-font-family, -apple-system), BlinkMacSystemFont, 'Inter', 'Vazirmatn', ui-sans-serif,
-		system-ui, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif, 'Helvetica Neue',
-		Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+		var(--app-font-family, 'Inter'), 'Noto Sans Thai', -apple-system, BlinkMacSystemFont,
+		'Vazirmatn', ui-sans-serif, system-ui, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans',
+		sans-serif, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+		'Noto Color Emoji';
 	--font-primary: var(--font-sans);
 	--font-secondary: var(--font-sans);
+
+	/* ── DevAgent.Dev corporate identity tokens (Branding CI §6) ─────────────── */
+	--color-brand-navy: #004488; /* Deep Ocean Blue — primary */
+	--color-brand-navy-dark: #003466;
+	--color-brand-silver: #c0c0c0; /* Silver Connectivity — secondary */
+	--color-brand-green: #00cc66; /* Growth Green — accent, use sparingly */
+	--color-brand-green-dark: #007a3d;
+	--color-brand-charcoal: #333333; /* Slate Charcoal — text */
+	--color-brand-paper: #f7f9fb;
+
+	/* Remap Tailwind's blue scale onto Deep Ocean Blue so every existing
+	   border-blue-*, ring-blue-*, bg-blue-* selection/focus state is on-brand.
+	   500 is the exact brand primary. */
+	--color-blue-50: #eef3fa;
+	--color-blue-100: #dae6f4;
+	--color-blue-200: #b5cdeb;
+	--color-blue-300: #7fa8da;
+	--color-blue-400: #3d7dc2;
+	--color-blue-500: #004488;
+	--color-blue-600: #003466;
+	--color-blue-700: #002b55;
+	--color-blue-800: #002244;
+	--color-blue-900: #001a33;
+	--color-blue-950: #001122;
+
+	/* Remap the green scale onto Growth Green for positive status signals. */
+	--color-green-50: #e6fbf1;
+	--color-green-100: #ccf7e3;
+	--color-green-200: #99f0c8;
+	--color-green-300: #66e6a8;
+	--color-green-400: #33d985;
+	--color-green-500: #00cc66;
+	--color-green-600: #00a352;
+	--color-green-700: #007a3d;
+	--color-green-800: #005c2e;
+	--color-green-900: #003d1f;
+	--color-green-950: #002914;
 
 	--color-gray-50: oklch(0.98 0 0);
 	--color-gray-100: oklch(0.94 0 0);
@@ -49,9 +89,25 @@
 
 	pre {
 		font-family:
-			-apple-system, BlinkMacSystemFont, 'Inter', 'Vazirmatn', ui-sans-serif, system-ui, 'Segoe UI',
-			Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif, 'Helvetica Neue', Arial,
-			'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+			'Inter',
+			'Noto Sans Thai',
+			-apple-system,
+			BlinkMacSystemFont,
+			'Vazirmatn',
+			ui-sans-serif,
+			system-ui,
+			'Segoe UI',
+			Roboto,
+			Ubuntu,
+			Cantarell,
+			'Noto Sans',
+			sans-serif,
+			'Helvetica Neue',
+			Arial,
+			'Apple Color Emoji',
+			'Segoe UI Emoji',
+			'Segoe UI Symbol',
+			'Noto Color Emoji';
 	}
 
 	pre {
@@ -75,7 +131,7 @@
 	}
 
 	input[type='checkbox']:checked {
-		@apply bg-blue-600 border-blue-600;
+		@apply bg-blue-500 border-blue-500;
 	}
 
 	input[type='checkbox']:after {

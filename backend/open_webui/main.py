@@ -487,7 +487,7 @@ apply_orjson_http_json()
 # Do not alter, remove, obscure, or replace it except as LICENSE permits:
 # https://docs.openwebui.com/license.
 app = FastAPI(
-    title='Open WebUI',
+    title='DevAgent.Dev',
     docs_url='/docs' if ENV == 'dev' else None,
     openapi_url='/openapi.json' if ENV == 'dev' else None,
     redoc_url=None,
@@ -2854,10 +2854,11 @@ async def get_manifest_json():
         return {
             'name': app.state.WEBUI_NAME,
             'short_name': app.state.WEBUI_NAME,
-            'description': f'{app.state.WEBUI_NAME} is an open, extensible, user-friendly interface for AI that adapts to your workflow.',
+            'description': f'{app.state.WEBUI_NAME} — AI workspace by DevAgent.Dev. The Trusted Advance.',
             'start_url': '/',
             'display': 'standalone',
-            'background_color': '#343541',
+            'background_color': '#ffffff',
+            'theme_color': '#004488',
             'icons': [
                 # LICENSE covers this Open WebUI install icon.
                 # Do not alter, remove, obscure, or replace it except as LICENSE permits:

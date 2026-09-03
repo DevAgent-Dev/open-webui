@@ -1,6 +1,7 @@
 {
-  "name": "Open WebUI",
-  "short_name": "WebUI",
+  "name": "DevAgent.Dev",
+  "short_name": "DevAgent",
+  "description": "DevAgent.Dev AI workspace — The Trusted Advance",
   "icons": [
     {
       "src": "/static/web-app-manifest-192x192.png",
@@ -15,7 +16,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#004488",
   "background_color": "#ffffff",
   "display": "standalone"
 }
