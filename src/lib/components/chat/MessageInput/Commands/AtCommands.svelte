@@ -347,7 +347,7 @@
 							// LICENSE covers this Open WebUI fallback logo.
 							// Do not alter, remove, obscure, or replace it except as LICENSE permits:
 							// https://docs.openwebui.com/license.
-							(e.currentTarget as HTMLImageElement).src = '/favicon.png';
+							(e.currentTarget as HTMLImageElement).src = '/static/brand/devagent-mark.png';
 						}}
 					/>
 					<div class="min-w-0 truncate">
