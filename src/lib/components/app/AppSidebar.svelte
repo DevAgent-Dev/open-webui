@@ -34,8 +34,14 @@
 				https://docs.openwebui.com/license. -->
 				<img
 					src="{WEBUI_BASE_URL}/static/splash.png"
-					class="size-11 dark:invert p-0.5"
-					alt="logo"
+					class="w-11 h-auto p-0.5 dark:hidden"
+					alt="DevAgent.Dev"
+					draggable="false"
+				/>
+				<img
+					src="{WEBUI_BASE_URL}/static/splash-dark.png"
+					class="hidden w-11 h-auto p-0.5 dark:block"
+					alt="DevAgent.Dev"
 					draggable="false"
 				/>
 			</button>
@@ -63,7 +69,7 @@
 			<img
 				src="{WEBUI_BASE_URL}/static/favicon.png"
 				class="size-10 {selected === '' ? 'rounded-2xl' : 'rounded-full'}"
-				alt="logo"
+				alt="DevAgent.Dev"
 				draggable="false"
 			/>
 		</button>

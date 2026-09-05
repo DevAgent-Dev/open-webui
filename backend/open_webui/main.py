@@ -2858,7 +2858,7 @@ async def get_manifest_json():
             'start_url': '/',
             'display': 'standalone',
             'background_color': '#ffffff',
-            'theme_color': '#004488',
+            'theme_color': '#0B57D0',
             'icons': [
                 # LICENSE covers this Open WebUI install icon.
                 # Do not alter, remove, obscure, or replace it except as LICENSE permits:

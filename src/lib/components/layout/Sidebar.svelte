@@ -1144,36 +1144,26 @@
 					class="sidebar px-1 pt-1.5 pb-1 flex justify-between space-x-1 text-gray-600 dark:text-gray-400 sticky top-0 z-10 -mb-2"
 				>
 					<a
-						class="flex items-center rounded-xl size-8.5 h-full justify-center hover:bg-gray-100 dark:hover:bg-gray-900 transition no-drag-region"
 						href="/"
+						class="flex min-w-0 flex-1 items-center rounded-xl px-2 py-1 no-drag-region hover:bg-gray-100 dark:hover:bg-gray-900 transition"
 						draggable="false"
 						on:click={newChatHandler}
 					>
-						<!-- LICENSE covers this Open WebUI sidebar logo.
+						<!-- LICENSE covers this Open WebUI sidebar name and logo.
 					Do not alter, remove, obscure, or replace it except as LICENSE permits:
 					https://docs.openwebui.com/license. -->
 						<img
 							crossorigin="anonymous"
-							src="{WEBUI_BASE_URL}/static/favicon.png"
-							class="sidebar-new-chat-icon size-5 rounded-full"
-							alt=""
+							src="{WEBUI_BASE_URL}/static/brand/devagent-compact.png"
+							class="h-6 w-auto max-w-[9rem] dark:hidden"
+							alt={$WEBUI_NAME}
 						/>
-					</a>
-
-					<a href="/" class="flex flex-1 px-0.5" on:click={newChatHandler}>
-						<!-- LICENSE covers this Open WebUI sidebar name.
-					Do not alter, remove, obscure, or replace it except as LICENSE permits:
-					https://docs.openwebui.com/license. -->
-						<div
-							id="sidebar-webui-name"
-							class=" self-center font-normal text-gray-700 dark:text-gray-200"
-						>
-							{#if $WEBUI_NAME.endsWith('.Dev')}
-								{$WEBUI_NAME.slice(0, -4)}<span class="brand-tld">.Dev</span>
-							{:else}
-								{$WEBUI_NAME}
-							{/if}
-						</div>
+						<img
+							crossorigin="anonymous"
+							src="{WEBUI_BASE_URL}/static/brand/devagent-compact-reverse.png"
+							class="hidden h-6 w-auto max-w-[9rem] dark:block"
+							alt={$WEBUI_NAME}
+						/>
 					</a>
 					<Tooltip
 						content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}

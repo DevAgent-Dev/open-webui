@@ -13,42 +13,46 @@
 	--font-primary: var(--font-sans);
 	--font-secondary: var(--font-sans);
 
-	/* ── DevAgent.Dev corporate identity tokens (Branding CI §6) ─────────────── */
-	--color-brand-navy: #004488; /* Deep Ocean Blue — primary */
-	--color-brand-navy-dark: #003466;
-	--color-brand-silver: #c0c0c0; /* Silver Connectivity — secondary */
-	--color-brand-green: #00cc66; /* Growth Green — accent, use sparingly */
-	--color-brand-green-dark: #007a3d;
-	--color-brand-charcoal: #333333; /* Slate Charcoal — text */
-	--color-brand-paper: #f7f9fb;
+	/* ── DevAgent.Dev corporate identity tokens (Branding CI v2 §6) ──────────── */
+	--color-brand-blue: #0b57d0; /* Trust Blue — primary action */
+	--color-brand-blue-dark: #0848ad;
+	--color-brand-green: #00c781; /* Growth Green — progress and accent */
+	--color-brand-green-dark: #009862;
+	--color-brand-navy: #0f172a; /* Focus Navy — text and structure */
+	--color-brand-navy-dark: #080f20;
+	--color-brand-gray: #e5e7eb; /* Balance Gray — dividers and surfaces */
+	--color-brand-paper: #f8fafc;
+	/* Compatibility aliases for branded extensions using the v1 token names. */
+	--color-brand-silver: var(--color-brand-gray);
+	--color-brand-charcoal: var(--color-brand-navy);
 
-	/* Remap Tailwind's blue scale onto Deep Ocean Blue so every existing
+	/* Remap Tailwind's blue scale onto Trust Blue so every existing
 	   border-blue-*, ring-blue-*, bg-blue-* selection/focus state is on-brand.
 	   500 is the exact brand primary. */
-	--color-blue-50: #eef3fa;
-	--color-blue-100: #dae6f4;
-	--color-blue-200: #b5cdeb;
-	--color-blue-300: #7fa8da;
-	--color-blue-400: #3d7dc2;
-	--color-blue-500: #004488;
-	--color-blue-600: #003466;
-	--color-blue-700: #002b55;
-	--color-blue-800: #002244;
-	--color-blue-900: #001a33;
-	--color-blue-950: #001122;
+	--color-blue-50: #eef5ff;
+	--color-blue-100: #d9e8ff;
+	--color-blue-200: #bad4ff;
+	--color-blue-300: #8db7ff;
+	--color-blue-400: #5890f5;
+	--color-blue-500: #0b57d0;
+	--color-blue-600: #094bb8;
+	--color-blue-700: #0b3e92;
+	--color-blue-800: #103675;
+	--color-blue-900: #112f61;
+	--color-blue-950: #0a1c3d;
 
 	/* Remap the green scale onto Growth Green for positive status signals. */
-	--color-green-50: #e6fbf1;
-	--color-green-100: #ccf7e3;
-	--color-green-200: #99f0c8;
-	--color-green-300: #66e6a8;
-	--color-green-400: #33d985;
-	--color-green-500: #00cc66;
-	--color-green-600: #00a352;
-	--color-green-700: #007a3d;
-	--color-green-800: #005c2e;
-	--color-green-900: #003d1f;
-	--color-green-950: #002914;
+	--color-green-50: #ebfff7;
+	--color-green-100: #cffff0;
+	--color-green-200: #a4ffe0;
+	--color-green-300: #68f9c8;
+	--color-green-400: #2ee7aa;
+	--color-green-500: #00c781;
+	--color-green-600: #00a66c;
+	--color-green-700: #008458;
+	--color-green-800: #006846;
+	--color-green-900: #00553b;
+	--color-green-950: #003024;
 
 	--color-gray-50: oklch(0.98 0 0);
 	--color-gray-100: oklch(0.94 0 0);

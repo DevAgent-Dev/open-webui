@@ -67,21 +67,19 @@ code {
 
 /* ── DevAgent.Dev corporate identity ────────────────────────────────────────
    Applied on top of the utility classes (unlayered, so it wins the cascade).
-   Sources: ~/DevAgent.Dev/branding/DevAgent.Dev-Branding-CI.md and
-   ~/DevAgent.Dev/website/DESIGN_SYSTEM.md.
+   Source: ~/DevAgent.Dev/branding/DevAgent.Dev-Branding-CI.md (v2.0).
 
-   • Standard primary actions use Deep Ocean Blue (light theme). The dark theme
-     keeps its neutral white primary, since navy on near-black fails contrast and
-     the CI has no reverse palette yet.
+   • Standard primary actions use Trust Blue in the light theme. The dark theme
+	 keeps its neutral white primary for strong contrast.
    • Inputs get a 1px Growth Green focus treatment.
-   • Text selection uses Growth Green with navy ink, as on devagent.dev.
+	• Text selection uses Growth Green with Focus Navy ink.
    ─────────────────────────────────────────────────────────────────────────── */
 html:not(.dark) button.bg-black,
 html:not(.dark) a.bg-black,
 html:not(.dark) [role='button'].bg-black,
 html:not(.dark) button.bg-gray-900,
 html:not(.dark) a.bg-gray-900 {
-	background-color: var(--color-brand-navy);
+	background-color: var(--color-brand-blue);
 	color: #fff;
 }
 
@@ -90,7 +88,7 @@ html:not(.dark) a.bg-black:hover,
 html:not(.dark) [role='button'].bg-black:hover,
 html:not(.dark) button.bg-gray-900:hover,
 html:not(.dark) a.bg-gray-900:hover {
-	background-color: var(--color-brand-navy-dark);
+	background-color: var(--color-brand-blue-dark);
 }
 
 html:not(.dark) button.bg-black:focus-visible,
@@ -110,7 +108,7 @@ input:where(
 	):focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-	outline: 1px solid var(--color-brand-green);
+	outline: 1px solid color-mix(in srgb, var(--color-brand-green) 55%, transparent);
 	outline-offset: 0;
 }
 
@@ -122,20 +120,6 @@ select:focus-visible {
 html.dark ::selection {
 	background: color-mix(in srgb, var(--color-brand-green) 40%, transparent);
 	color: #fff;
-}
-
-/* Sidebar wordmark: "DevAgent" in charcoal, ".Dev" in Deep Ocean Blue (as on devagent.dev) */
-#sidebar-webui-name {
-	font-weight: 600;
-	letter-spacing: -0.02em;
-}
-
-#sidebar-webui-name .brand-tld {
-	color: var(--color-brand-navy);
-}
-
-html.dark #sidebar-webui-name .brand-tld {
-	color: var(--color-blue-300);
 }
 
 .app-icon-muted {
@@ -1085,59 +1069,38 @@ html.high-contrast:not(.dark) .shimmer {
 }
 
 /* ── DevAgent.Dev Liquid Glass ──────────────────────────────────────────────
-   Translucent, blurred surfaces with a specular top edge, floating over an
-   ambient field tinted with the brand palette so the glass has something to
-   refract. Scoped to html.liquid (default on; Settings > General toggles it).
-   Brand colours are unchanged: Deep Ocean Blue systems, Growth Green signals.
+   Quiet glass: translucent, blurred panes with one hairline edge and a soft
+   shadow, floating over a near-white field with a single faint brand tint.
+   No gloss overlays, no stacked rings. Scoped to html.liquid (default on;
+   Settings > General toggles it). Brand colours unchanged.
    ─────────────────────────────────────────────────────────────────────────── */
 html.liquid {
-	--lg-blur: 22px;
-	--lg-saturate: 160%;
+	--lg-blur: 18px;
+	--lg-saturate: 140%;
 	--lg-surface: rgba(255, 255, 255, 0.62);
-	--lg-surface-strong: rgba(255, 255, 255, 0.88);
-	--lg-panel: rgba(255, 255, 255, 0.93);
-	--lg-field: rgba(255, 255, 255, 0.85);
-	--lg-field-ring: rgba(0, 68, 136, 0.12);
-	--lg-field-ring-focus: rgba(0, 204, 102, 0.6);
-	--lg-placeholder: rgba(51, 51, 51, 0.42);
-	--lg-border: rgba(255, 255, 255, 0.7);
-	--lg-rim: rgba(0, 68, 136, 0.14);
-	--lg-shadow: 0 12px 40px -14px rgba(0, 68, 136, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.85);
-	--lg-highlight: linear-gradient(
-		180deg,
-		rgba(255, 255, 255, 0.7) 0%,
-		rgba(255, 255, 255, 0.18) 38%,
-		rgba(255, 255, 255, 0) 62%
-	);
+	--lg-surface-strong: rgba(255, 255, 255, 0.82);
+	--lg-line: rgba(11, 87, 208, 0.1);
+	--lg-line-strong: rgba(11, 87, 208, 0.16);
+	--lg-shadow: 0 8px 30px -14px rgba(11, 87, 208, 0.22);
+	--lg-shadow-strong: 0 24px 60px -24px rgba(11, 87, 208, 0.3);
+	--lg-focus: rgba(0, 199, 129, 0.55);
 	--lg-ambient:
-		radial-gradient(60vw 55vh at 6% -4%, rgba(0, 68, 136, 0.17), transparent 62%),
-		radial-gradient(44vw 46vh at 102% 18%, rgba(0, 204, 102, 0.14), transparent 60%),
-		radial-gradient(52vw 50vh at 62% 112%, rgba(0, 68, 136, 0.13), transparent 62%),
-		linear-gradient(180deg, #f6f8fb 0%, #edf1f6 100%);
+		radial-gradient(ellipse 70% 55% at 0% 0%, rgba(11, 87, 208, 0.07), transparent 70%),
+		radial-gradient(ellipse 55% 45% at 100% 100%, rgba(0, 199, 129, 0.05), transparent 70%),
+		linear-gradient(180deg, #f8fafc 0%, #f1f4f8 100%);
 }
 
 html.liquid.dark {
-	--lg-surface: rgba(18, 26, 40, 0.62);
-	--lg-surface-strong: rgba(18, 26, 40, 0.86);
-	--lg-panel: rgba(18, 26, 40, 0.92);
-	--lg-field: rgba(255, 255, 255, 0.06);
-	--lg-field-ring: rgba(255, 255, 255, 0.1);
-	--lg-field-ring-focus: rgba(0, 204, 102, 0.55);
-	--lg-placeholder: rgba(255, 255, 255, 0.38);
-	--lg-border: rgba(255, 255, 255, 0.13);
-	--lg-rim: rgba(0, 204, 102, 0.1);
-	--lg-shadow: 0 18px 50px -18px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-	--lg-highlight: linear-gradient(
-		180deg,
-		rgba(255, 255, 255, 0.13) 0%,
-		rgba(255, 255, 255, 0.03) 38%,
-		rgba(255, 255, 255, 0) 62%
-	);
+	--lg-surface: rgba(16, 22, 34, 0.6);
+	--lg-surface-strong: rgba(16, 22, 34, 0.82);
+	--lg-line: rgba(255, 255, 255, 0.08);
+	--lg-line-strong: rgba(255, 255, 255, 0.14);
+	--lg-shadow: 0 8px 30px -14px rgba(0, 0, 0, 0.5);
+	--lg-shadow-strong: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+	--lg-focus: rgba(0, 199, 129, 0.5);
 	--lg-ambient:
-		radial-gradient(60vw 55vh at 6% -4%, rgba(0, 68, 136, 0.5), transparent 62%),
-		radial-gradient(44vw 46vh at 102% 18%, rgba(0, 204, 102, 0.16), transparent 60%),
-		radial-gradient(52vw 50vh at 62% 112%, rgba(0, 68, 136, 0.35), transparent 62%),
-		linear-gradient(180deg, #0b1220 0%, #05080f 100%);
+		radial-gradient(ellipse 70% 55% at 0% 0%, rgba(11, 87, 208, 0.22), transparent 70%),
+		linear-gradient(180deg, #0c111a 0%, #080b12 100%);
 }
 
 /* Ambient field behind everything */
@@ -1158,7 +1121,7 @@ html.liquid #app-shell {
 	background: transparent;
 }
 
-/* Shared glass recipe */
+/* Shared blur */
 html.liquid #sidebar,
 html.liquid .liquid-input,
 html.liquid .liquid-panel,
@@ -1174,128 +1137,59 @@ html.liquid [data-sonner-toast] {
 	backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
 }
 
-/* Sidebar: a frosted pane hinged on the left edge */
+/* Sidebar: one frosted pane, one hairline */
 html.liquid #sidebar {
 	background-color: var(--lg-surface);
-	border-right: 1px solid var(--lg-border);
-	box-shadow:
-		inset -1px 0 0 var(--lg-rim),
-		12px 0 40px -24px rgba(0, 68, 136, 0.25);
+	border-right: 1px solid var(--lg-line);
+	box-shadow: none;
 }
 
-/* Top bar: a soft blur band that content scrolls beneath */
+/* Top bar: soft blur band that content scrolls beneath */
 html.liquid .liquid-nav {
-	-webkit-backdrop-filter: blur(14px) saturate(150%);
-	backdrop-filter: blur(14px) saturate(150%);
-	-webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
-	mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+	-webkit-mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
+	mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
 	background: linear-gradient(180deg, var(--lg-surface) 0%, transparent 100%);
 }
 
-/* Composer: the hero glass capsule */
+/* Composer: the glass capsule. One border, one shadow. */
 html.liquid .liquid-input {
-	isolation: isolate;
 	border-radius: 1.75rem;
 	background-color: var(--lg-surface-strong);
-	border: 1px solid var(--lg-border);
-	box-shadow:
-		var(--lg-shadow),
-		0 0 0 1px var(--lg-rim);
+	border: 1px solid var(--lg-line-strong);
+	box-shadow: var(--lg-shadow);
 	transition:
-		box-shadow 0.25s ease,
-		border-color 0.25s ease;
+		box-shadow 0.2s ease,
+		border-color 0.2s ease;
 }
 
-html.liquid .liquid-input::before,
-html.liquid .liquid-panel::before,
-html.liquid .liquid-bubble::before {
-	content: '';
-	position: absolute;
-	inset: 0;
-	z-index: -1;
-	border-radius: inherit;
-	background: var(--lg-highlight);
-	pointer-events: none;
+html.liquid .liquid-input:hover {
+	border-color: var(--lg-line-strong);
 }
 
 html.liquid .liquid-input:focus-within {
-	border-color: rgba(0, 204, 102, 0.55);
-	box-shadow:
-		var(--lg-shadow),
-		0 0 0 3px rgba(0, 204, 102, 0.18);
+	border-color: var(--lg-focus);
+	box-shadow: var(--lg-shadow);
 }
 
 /* Dialogs */
 html.liquid .modal {
-	-webkit-backdrop-filter: blur(18px) saturate(120%);
-	backdrop-filter: blur(18px) saturate(120%);
-	background-color: rgba(0, 24, 48, 0.42);
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+	background-color: rgba(0, 24, 48, 0.28);
 }
 
 html.liquid .liquid-panel {
-	position: relative;
-	isolation: isolate;
-	-webkit-backdrop-filter: blur(30px) saturate(var(--lg-saturate));
-	backdrop-filter: blur(30px) saturate(var(--lg-saturate));
-	background-color: var(--lg-panel);
-	border: 1px solid var(--lg-border);
-	box-shadow:
-		var(--lg-shadow),
-		0 0 0 1px var(--lg-rim);
-}
-
-/* Form fields on glass need their own defined surface to stay legible */
-html.liquid
-	:is(.liquid-panel, #sidebar, .liquid-input)
-	:is(
-		input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']),
-		textarea,
-		select
-	) {
-	background-color: var(--lg-field) !important;
-	box-shadow: inset 0 0 0 1px var(--lg-field-ring);
-	transition:
-		box-shadow 0.15s ease,
-		background-color 0.15s ease;
-}
-
-html.liquid
-	:is(.liquid-panel, #sidebar, .liquid-input)
-	:is(
-		input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']),
-		textarea,
-		select
-	):focus-visible {
-	outline: none;
-	box-shadow: inset 0 0 0 1px var(--lg-field-ring-focus);
-}
-
-html.liquid :is(.liquid-panel, #sidebar) :is(input, textarea)::placeholder {
-	color: var(--lg-placeholder);
-}
-
-/* Settings modal: give the nav column and content column room to breathe */
-@media (min-width: 768px) {
-	html.liquid #settings-tabs-container {
-		padding: 0.75rem 0.5rem 0.75rem 0.75rem;
-	}
-
-	html.liquid .settings-content {
-		padding: 1.5rem 2.25rem 1.75rem 2rem;
-	}
+	background-color: var(--lg-surface-strong);
+	border: 1px solid var(--lg-line);
+	box-shadow: var(--lg-shadow-strong);
 }
 
 /* User message bubble */
 html.liquid .liquid-bubble {
-	position: relative;
-	isolation: isolate;
 	background-color: var(--lg-surface);
-	border: 1px solid var(--lg-border);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
-}
-
-html.liquid.dark .liquid-bubble {
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	border: 1px solid var(--lg-line);
 }
 
 /* Menus, popovers, tooltips, toasts */
@@ -1305,66 +1199,52 @@ html.liquid [data-popover-content],
 html.liquid [data-combobox-content],
 html.liquid [data-context-menu-content] {
 	background-color: var(--lg-surface-strong);
-	border: 1px solid var(--lg-border);
-	box-shadow: var(--lg-shadow);
+	border: 1px solid var(--lg-line);
+	box-shadow: var(--lg-shadow-strong);
 }
 
 html.liquid .tippy-box[data-theme~='dark'] {
-	background-color: rgba(10, 16, 28, 0.78);
-	border-color: rgba(255, 255, 255, 0.14);
+	background-color: rgba(10, 16, 28, 0.82);
+	border-color: rgba(255, 255, 255, 0.1);
 }
 
 html.liquid [data-sonner-toast] {
 	border-radius: 1rem;
-	border: 1px solid var(--lg-border);
+	border: 1px solid var(--lg-line);
 	box-shadow: var(--lg-shadow);
 }
 
-/* Primary actions: glossy navy in light, frosted white in dark */
+/* Primary actions stay flat Trust Blue (light) / white (dark); only a soft shadow is added. */
 html.liquid:not(.dark) button.bg-black,
 html.liquid:not(.dark) a.bg-black,
 html.liquid:not(.dark) [role='button'].bg-black,
 html.liquid:not(.dark) button.bg-gray-900,
 html.liquid:not(.dark) a.bg-gray-900 {
-	background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 55%);
-	box-shadow:
-		inset 0 1px 0 rgba(255, 255, 255, 0.35),
-		0 10px 24px -12px rgba(0, 68, 136, 0.6);
-}
-
-html.liquid.dark button.bg-black,
-html.liquid.dark a.bg-black,
-html.liquid.dark [role='button'].bg-black {
-	background-color: rgba(255, 255, 255, 0.88);
-	-webkit-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);
-	box-shadow:
-		inset 0 1px 0 rgba(255, 255, 255, 0.9),
-		0 10px 24px -12px rgba(0, 0, 0, 0.6);
+	box-shadow: 0 6px 18px -10px rgba(11, 87, 208, 0.5);
 }
 
 /* Fallbacks: no backdrop-filter support, or the user prefers less transparency */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
 	html.liquid {
-		--lg-surface: rgba(255, 255, 255, 0.92);
-		--lg-surface-strong: rgba(255, 255, 255, 0.96);
+		--lg-surface: rgba(255, 255, 255, 0.94);
+		--lg-surface-strong: rgba(255, 255, 255, 0.97);
 	}
 
 	html.liquid.dark {
-		--lg-surface: rgba(18, 26, 40, 0.94);
-		--lg-surface-strong: rgba(18, 26, 40, 0.97);
+		--lg-surface: rgba(16, 22, 34, 0.95);
+		--lg-surface-strong: rgba(16, 22, 34, 0.98);
 	}
 }
 
 @media (prefers-reduced-transparency: reduce) {
 	html.liquid {
 		--lg-blur: 0px;
-		--lg-surface: rgba(255, 255, 255, 0.96);
+		--lg-surface: rgba(255, 255, 255, 0.97);
 		--lg-surface-strong: #fff;
 	}
 
 	html.liquid.dark {
-		--lg-surface: rgba(18, 26, 40, 0.97);
-		--lg-surface-strong: #121a28;
+		--lg-surface: rgba(16, 22, 34, 0.98);
+		--lg-surface-strong: #101622;
 	}
 }
