@@ -1870,7 +1870,7 @@
 										<div class="pl-[0.0625rem] flex items-center gap-2 text-sm dark:text-gray-500">
 											<img
 												alt="model profile"
-												class="size-3.5 max-w-[1.75rem] object-cover rounded-full"
+												class="size-3.5 max-w-[1.75rem] rounded-full object-contain"
 												src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${$models.find((model) => model.id === atSelectedModel.id).id}&lang=${$i18n.language}`}
 											/>
 											<div class="translate-y-[0.5px]">

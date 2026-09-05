@@ -337,7 +337,7 @@
 								src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${message.reply_to_message.meta.model_id}`}
 								alt={message.reply_to_message.meta.model_name ??
 									message.reply_to_message.meta.model_id}
-								class="size-4 ml-0.5 rounded-full object-cover"
+								class="ml-0.5 size-4 rounded-full object-contain"
 								on:error={(e) => {
 									// LICENSE covers this Open WebUI fallback logo.
 									// Do not alter, remove, obscure, or replace it except as LICENSE permits:
@@ -383,7 +383,7 @@
 							<img
 								src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${message.meta.model_id}`}
 								alt={message.meta.model_name ?? message.meta.model_id}
-								class="size-8 translate-y-1 ml-0.5 object-cover rounded-full"
+								class="ml-0.5 size-8 translate-y-1 rounded-full object-contain"
 								on:error={(e) => {
 									// LICENSE covers this Open WebUI fallback logo.
 									// Do not alter, remove, obscure, or replace it except as LICENSE permits:

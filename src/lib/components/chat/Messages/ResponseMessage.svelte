@@ -666,6 +666,7 @@
 			<ProfileImage
 				src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${model?.id}&lang=${$i18n.language}`}
 				className={'size-7 assistant-message-profile-image'}
+				objectFitClass="object-contain"
 			/>
 		</div>
 

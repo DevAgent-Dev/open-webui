@@ -57,7 +57,7 @@
 						>
 							<img
 								src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${model?.id}&lang=${$i18n.language}`}
-								class=" size-[2.7rem] rounded-full"
+								class="size-[2.7rem] rounded-full object-contain"
 								alt="logo"
 								draggable="false"
 								on:error={(e) => {

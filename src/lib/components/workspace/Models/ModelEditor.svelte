@@ -624,13 +624,17 @@
 												<img
 													src={info.meta.profile_image_url}
 													alt="model profile"
-													class="size-full object-cover"
+													class="size-full {info.meta.profile_image_url.endsWith(
+														'/static/brand/devagent-mark.png'
+													)
+														? 'object-contain'
+														: 'object-cover'}"
 												/>
 											{:else}
 												<img
 													src="{WEBUI_BASE_URL}/static/brand/devagent-mark.png"
 													alt="model profile"
-													class="size-full object-cover"
+													class="size-full object-contain"
 												/>
 											{/if}
 

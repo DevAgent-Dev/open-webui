@@ -482,7 +482,7 @@
 										<img
 											src="{WEBUI_API_BASE_URL}/models/model/profile/image?id={model.model_id}"
 											alt={model.name}
-											class="size-5 rounded-full object-cover shrink-0"
+											class="size-5 shrink-0 rounded-full object-contain"
 											on:error={(e) => {
 												// LICENSE covers this Open WebUI fallback logo.
 												// Do not alter, remove, obscure, or replace it except as LICENSE permits:

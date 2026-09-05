@@ -106,7 +106,7 @@
 						<img
 							src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${encodeURIComponent(model.id)}`}
 							alt={model?.name ?? model.id}
-							class="rounded-full size-5 items-center mr-2"
+							class="mr-2 size-5 items-center rounded-full object-contain"
 							loading="lazy"
 							on:error={(e) => {
 								// LICENSE covers this Open WebUI fallback logo.

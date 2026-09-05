@@ -715,7 +715,7 @@
 										<img
 											src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${model.id}&lang=${$i18n.language}`}
 											alt=""
-											class="size-7 rounded-lg object-cover"
+											class="size-7 rounded-lg object-contain"
 											loading="lazy"
 											decoding="async"
 											on:error={(e) => {
