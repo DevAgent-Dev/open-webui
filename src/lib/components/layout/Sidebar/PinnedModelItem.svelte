@@ -37,13 +37,13 @@
 			<div class="self-center shrink-0">
 				<img
 					src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${model.id}&lang=${$i18n.language}`}
-					class=" size-4 rounded-full"
+					class="size-4 rounded-full object-contain"
 					alt="logo"
 					on:error={(e) => {
 						// LICENSE covers this Open WebUI fallback logo.
 						// Do not alter, remove, obscure, or replace it except as LICENSE permits:
 						// https://docs.openwebui.com/license.
-						e.currentTarget.src = '/favicon.png';
+						e.currentTarget.src = '/static/brand/devagent-mark.png';
 					}}
 				/>
 			</div>

@@ -54,6 +54,12 @@
 					localStorage.theme = 'system';
 				}
 
+				// DevAgent.Dev Liquid Glass surface layer (see src/app.css). On by default;
+				// Settings > General > Liquid Glass stores 'off' to disable.
+				if (localStorage?.liquid !== 'off') {
+					document.documentElement.classList.add('liquid');
+				}
+
 				if (localStorage.theme === 'system') {
 					document.documentElement.classList.add(prefersDarkTheme ? 'dark' : 'light');
 					metaThemeColorTag.setAttribute('content', prefersDarkTheme ? '#171717' : '#ffffff');
@@ -125,7 +131,7 @@
 			})();
 		</script>
 
-		<title>Open WebUI</title>
+		<title>DevAgent.Dev</title>
 
 		%sveltekit.head%
 	</head>

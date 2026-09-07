@@ -7,6 +7,15 @@ services:
     tty: true
     restart: unless-stopped
     image: ollama/ollama:${OLLAMA_DOCKER_TAG-latest}
+    gpus: all
+    environment:
+      - 'OLLAMA_KEEP_ALIVE=${OLLAMA_KEEP_ALIVE--1}'
+      - 'OLLAMA_NUM_PARALLEL=${OLLAMA_NUM_PARALLEL-2}'
+      - 'OLLAMA_CONTEXT_LENGTH=${OLLAMA_CONTEXT_LENGTH-4096}'
+      - 'OLLAMA_FLASH_ATTENTION=${OLLAMA_FLASH_ATTENTION-1}'
+      - 'OLLAMA_KV_CACHE_TYPE=${OLLAMA_KV_CACHE_TYPE-q8_0}'
+      - 'OLLAMA_MAX_LOADED_MODELS=${OLLAMA_MAX_LOADED_MODELS-2}'
+      - 'OLLAMA_MAX_QUEUE=${OLLAMA_MAX_QUEUE-32}'
 
   open-webui:
     build:
@@ -23,6 +32,24 @@ services:
     environment:
       - 'OLLAMA_BASE_URL=http://ollama:11434'
       - 'WEBUI_SECRET_KEY='
+      - 'WEBUI_URL=${WEBUI_URL-https://chat.devagent.dev}'
+      - 'ENABLE_OAUTH_PERSISTENT_CONFIG=True'
+      - 'ENABLE_OAUTH=True'
+      - 'ENABLE_OAUTH_SIGNUP=True'
+      - 'ENABLE_LOGIN_FORM=False'
+      - 'ENABLE_PASSWORD_AUTH=False'
+      - 'ENABLE_PASSWORD_CHANGE_FORM=False'
+      - 'ENABLE_SIGNUP=False'
+      - 'OAUTH_AUTO_REDIRECT=True'
+      - 'OAUTH_PROVIDER_NAME=DevAgent'
+      - 'OPENID_PROVIDER_URL=https://auth.devagent.dev/realms/devagent/.well-known/openid-configuration'
+      - 'OAUTH_CLIENT_ID=${OAUTH_CLIENT_ID-chat-ui}'
+      - 'OAUTH_CLIENT_SECRET=${OAUTH_CLIENT_SECRET-}'
+      - 'OPENID_REDIRECT_URI=${OPENID_REDIRECT_URI-https://chat.devagent.dev/oauth/oidc/login/callback}'
+      - 'OAUTH_SCOPES=openid email profile'
+      - 'ENABLE_API_KEYS=True'
+      - 'ENABLE_API_KEYS_ENDPOINT_RESTRICTIONS=True'
+      - 'API_KEYS_ALLOWED_ENDPOINTS=/api/v1/models,/api/v1/chat/completions'
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped

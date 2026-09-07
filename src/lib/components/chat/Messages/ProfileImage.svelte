@@ -3,6 +3,7 @@
 	import { safeImageUrl } from '$lib/utils/safeImageUrl';
 
 	export let className = 'size-8';
+	export let objectFitClass = 'object-cover';
 	// LICENSE covers this Open WebUI fallback logo.
 	// Do not alter, remove, obscure, or replace it except as LICENSE permits:
 	// https://docs.openwebui.com/license.
@@ -14,7 +15,7 @@
 <img
 	aria-hidden="true"
 	src={safeImageUrl(src)}
-	class=" {className} object-cover rounded-2xl"
+	class="{className} {objectFitClass} rounded-2xl"
 	alt="profile"
 	draggable="false"
 	on:error={(e) => {

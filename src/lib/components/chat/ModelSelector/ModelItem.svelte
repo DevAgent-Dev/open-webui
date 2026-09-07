@@ -96,13 +96,13 @@
 					<img
 						src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${item.model.id}&lang=${$i18n.language}`}
 						alt={$i18n.t('{{modelName}} profile image', { modelName: item.label })}
-						class="flex size-4 items-center rounded-full"
+						class="flex size-4 items-center rounded-full object-contain"
 						loading="lazy"
 						on:error={(e) => {
 							// LICENSE covers this Open WebUI fallback logo.
 							// Do not alter, remove, obscure, or replace it except as LICENSE permits:
 							// https://docs.openwebui.com/license.
-							e.currentTarget.src = '/favicon.png';
+							e.currentTarget.src = '/static/brand/devagent-mark.png';
 						}}
 					/>
 				</Tooltip>

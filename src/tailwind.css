@@ -3,12 +3,56 @@
 @config '../tailwind.config.js';
 
 @theme {
+	/* DevAgent.Dev CI §7: Inter for Latin, Noto Sans Thai for Thai. Inter has no Thai
+	   glyphs, so Thai text falls through to Noto Sans Thai automatically. */
 	--font-sans:
-		var(--app-font-family, -apple-system), BlinkMacSystemFont, 'Inter', 'Vazirmatn', ui-sans-serif,
-		system-ui, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif, 'Helvetica Neue',
-		Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+		var(--app-font-family, 'Inter'), 'Noto Sans Thai', -apple-system, BlinkMacSystemFont,
+		'Vazirmatn', ui-sans-serif, system-ui, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Noto Sans',
+		sans-serif, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+		'Noto Color Emoji';
 	--font-primary: var(--font-sans);
 	--font-secondary: var(--font-sans);
+
+	/* ── DevAgent.Dev corporate identity tokens (Branding CI v2 §6) ──────────── */
+	--color-brand-blue: #0b57d0; /* Trust Blue — primary action */
+	--color-brand-blue-dark: #0848ad;
+	--color-brand-green: #00c781; /* Growth Green — progress and accent */
+	--color-brand-green-dark: #009862;
+	--color-brand-navy: #0f172a; /* Focus Navy — text and structure */
+	--color-brand-navy-dark: #080f20;
+	--color-brand-gray: #e5e7eb; /* Balance Gray — dividers and surfaces */
+	--color-brand-paper: #f8fafc;
+	/* Compatibility aliases for branded extensions using the v1 token names. */
+	--color-brand-silver: var(--color-brand-gray);
+	--color-brand-charcoal: var(--color-brand-navy);
+
+	/* Remap Tailwind's blue scale onto Trust Blue so every existing
+	   border-blue-*, ring-blue-*, bg-blue-* selection/focus state is on-brand.
+	   500 is the exact brand primary. */
+	--color-blue-50: #eef5ff;
+	--color-blue-100: #d9e8ff;
+	--color-blue-200: #bad4ff;
+	--color-blue-300: #8db7ff;
+	--color-blue-400: #5890f5;
+	--color-blue-500: #0b57d0;
+	--color-blue-600: #094bb8;
+	--color-blue-700: #0b3e92;
+	--color-blue-800: #103675;
+	--color-blue-900: #112f61;
+	--color-blue-950: #0a1c3d;
+
+	/* Remap the green scale onto Growth Green for positive status signals. */
+	--color-green-50: #ebfff7;
+	--color-green-100: #cffff0;
+	--color-green-200: #a4ffe0;
+	--color-green-300: #68f9c8;
+	--color-green-400: #2ee7aa;
+	--color-green-500: #00c781;
+	--color-green-600: #00a66c;
+	--color-green-700: #008458;
+	--color-green-800: #006846;
+	--color-green-900: #00553b;
+	--color-green-950: #003024;
 
 	--color-gray-50: oklch(0.98 0 0);
 	--color-gray-100: oklch(0.94 0 0);
@@ -49,9 +93,25 @@
 
 	pre {
 		font-family:
-			-apple-system, BlinkMacSystemFont, 'Inter', 'Vazirmatn', ui-sans-serif, system-ui, 'Segoe UI',
-			Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif, 'Helvetica Neue', Arial,
-			'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+			'Inter',
+			'Noto Sans Thai',
+			-apple-system,
+			BlinkMacSystemFont,
+			'Vazirmatn',
+			ui-sans-serif,
+			system-ui,
+			'Segoe UI',
+			Roboto,
+			Ubuntu,
+			Cantarell,
+			'Noto Sans',
+			sans-serif,
+			'Helvetica Neue',
+			Arial,
+			'Apple Color Emoji',
+			'Segoe UI Emoji',
+			'Segoe UI Symbol',
+			'Noto Color Emoji';
 	}
 
 	pre {
@@ -75,7 +135,7 @@
 	}
 
 	input[type='checkbox']:checked {
-		@apply bg-blue-600 border-blue-600;
+		@apply bg-blue-500 border-blue-500;
 	}
 
 	input[type='checkbox']:after {

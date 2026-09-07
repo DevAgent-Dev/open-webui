@@ -144,14 +144,14 @@
 									>
 										<img
 											src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${model?.id}&lang=${$i18n.language}`}
-											class=" size-9 @sm:size-10 rounded-2xl"
+											class="size-9 rounded-2xl object-contain @sm:size-10"
 											aria-hidden="true"
 											draggable="false"
 											on:error={(e) => {
 												// LICENSE covers this Open WebUI fallback logo.
 												// Do not alter, remove, obscure, or replace it except as LICENSE permits:
 												// https://docs.openwebui.com/license.
-												e.currentTarget.src = '/favicon.png';
+												e.currentTarget.src = '/static/brand/devagent-mark.png';
 											}}
 										/>
 									</button>
