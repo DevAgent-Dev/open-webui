@@ -49,7 +49,7 @@ services:
       - 'OAUTH_SCOPES=openid email profile'
       - 'ENABLE_API_KEYS=True'
       - 'ENABLE_API_KEYS_ENDPOINT_RESTRICTIONS=True'
-      - 'API_KEYS_ALLOWED_ENDPOINTS=/api/v1/models,/api/v1/chat/completions'
+      - 'API_KEYS_ALLOWED_ENDPOINTS=/api/v1/models,/api/v1/chat/completions,/api/v1/knowledge'
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped
