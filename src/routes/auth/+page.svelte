@@ -249,7 +249,7 @@
 				{:else}
 					<div class="my-auto flex flex-col justify-center items-center">
 						<div id="auth-login-card" class=" sm:max-w-md my-auto pb-10 w-full dark:text-gray-100">
-							{#if $config?.metadata?.auth_logo_position === 'center'}
+							{#if ($config?.metadata?.auth_logo_position ?? 'center') === 'center'}
 								<div class="flex justify-center mb-6">
 									<!-- LICENSE covers this Open WebUI sign-in logo.
 									Do not alter, remove, obscure, or replace it except as LICENSE permits:

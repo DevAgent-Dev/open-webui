@@ -48,6 +48,9 @@ log = logging.getLogger(__name__)
 
 router = APIRouter()
 
+DEFAULT_MODEL_PROFILE_IMAGE_URL = '/static/brand/devagent-mark.png'
+LEGACY_MODEL_PROFILE_IMAGE_URLS = {'/favicon.png', '/static/favicon.png'}
+
 
 def add_chat_variables_schema(model_dict: dict) -> dict:
     system = (model_dict.get('params') or {}).get('system') if isinstance(model_dict.get('params'), dict) else None
@@ -686,7 +689,7 @@ async def get_model_profile_image(
                     # Do not alter, remove, obscure, or replace it except as LICENSE permits:
                     # https://docs.openwebui.com/license.
                     return RedirectResponse(
-                        url='/static/favicon.png',
+                        url=DEFAULT_MODEL_PROFILE_IMAGE_URL,
                         status_code=status.HTTP_302_FOUND,
                     )
 
@@ -707,6 +710,8 @@ async def get_model_profile_image(
         else:
             safe_static = _safe_static_redirect_path(profile_image_url)
             if safe_static:
+                if safe_static in LEGACY_MODEL_PROFILE_IMAGE_URLS:
+                    safe_static = DEFAULT_MODEL_PROFILE_IMAGE_URL
                 return RedirectResponse(
                     url=safe_static,
                     status_code=status.HTTP_302_FOUND,
@@ -716,7 +721,7 @@ async def get_model_profile_image(
     # Do not alter, remove, obscure, or replace it except as LICENSE permits:
     # https://docs.openwebui.com/license.
     return RedirectResponse(
-        url='/static/favicon.png',
+        url=DEFAULT_MODEL_PROFILE_IMAGE_URL,
         status_code=status.HTTP_302_FOUND,
     )
 

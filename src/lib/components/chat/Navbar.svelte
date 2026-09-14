@@ -79,7 +79,7 @@
 />
 
 <nav
-	class="sticky top-0 z-30 w-full {$mobile
+	class="liquid-nav sticky top-0 z-30 w-full {$mobile
 		? 'pt-1.5'
 		: 'pt-0.5'} pb-1 -mb-12 flex flex-col items-center drag-region"
 >

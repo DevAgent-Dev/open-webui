@@ -12,6 +12,15 @@
 	font-display: swap;
 }
 
+/* DevAgent.Dev CI §7 — Thai typeface (SIL OFL, see /assets/fonts/OFL-NotoSansThai.txt) */
+@font-face {
+	font-family: 'Noto Sans Thai';
+	src: url('/assets/fonts/NotoSansThai-Variable.ttf');
+	font-weight: 100 900;
+	font-display: swap;
+	unicode-range: U+0E00-0E7F;
+}
+
 /* --app-text-scale is updated via the UI Scale slider (Interface.svelte) */
 :root {
 	--app-text-scale: 1;
@@ -54,6 +63,63 @@ code {
 
 .app-muted {
 	@apply text-gray-500 dark:text-gray-400;
+}
+
+/* ── DevAgent.Dev corporate identity ────────────────────────────────────────
+   Applied on top of the utility classes (unlayered, so it wins the cascade).
+   Source: ~/DevAgent.Dev/branding/DevAgent.Dev-Branding-CI.md (v2.0).
+
+   • Standard primary actions use Trust Blue in the light theme. The dark theme
+	 keeps its neutral white primary for strong contrast.
+   • Inputs get a 1px Growth Green focus treatment.
+	• Text selection uses Growth Green with Focus Navy ink.
+   ─────────────────────────────────────────────────────────────────────────── */
+html:not(.dark) button.bg-black,
+html:not(.dark) a.bg-black,
+html:not(.dark) [role='button'].bg-black,
+html:not(.dark) button.bg-gray-900,
+html:not(.dark) a.bg-gray-900 {
+	background-color: var(--color-brand-blue);
+	color: #fff;
+}
+
+html:not(.dark) button.bg-black:hover,
+html:not(.dark) a.bg-black:hover,
+html:not(.dark) [role='button'].bg-black:hover,
+html:not(.dark) button.bg-gray-900:hover,
+html:not(.dark) a.bg-gray-900:hover {
+	background-color: var(--color-brand-blue-dark);
+}
+
+html:not(.dark) button.bg-black:focus-visible,
+html:not(.dark) a.bg-black:focus-visible {
+	outline: 2px solid var(--color-brand-green);
+	outline-offset: 2px;
+}
+
+input:where(
+		[type='text'],
+		[type='email'],
+		[type='password'],
+		[type='url'],
+		[type='number'],
+		[type='search'],
+		[type='tel']
+	):focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+	outline: 1px solid color-mix(in srgb, var(--color-brand-green) 55%, transparent);
+	outline-offset: 0;
+}
+
+::selection {
+	background: color-mix(in srgb, var(--color-brand-green) 35%, transparent);
+	color: var(--color-brand-navy);
+}
+
+html.dark ::selection {
+	background: color-mix(in srgb, var(--color-brand-green) 40%, transparent);
+	color: #fff;
 }
 
 .app-icon-muted {
@@ -1000,4 +1066,185 @@ html.high-contrast:not(.dark) .shimmer {
 	background: none;
 	color: var(--color-gray-800);
 	-webkit-text-fill-color: var(--color-gray-800);
+}
+
+/* ── DevAgent.Dev Liquid Glass ──────────────────────────────────────────────
+   Quiet glass: translucent, blurred panes with one hairline edge and a soft
+   shadow, floating over a near-white field with a single faint brand tint.
+   No gloss overlays, no stacked rings. Scoped to html.liquid (default on;
+   Settings > General toggles it). Brand colours unchanged.
+   ─────────────────────────────────────────────────────────────────────────── */
+html.liquid {
+	--lg-blur: 18px;
+	--lg-saturate: 140%;
+	--lg-surface: rgba(255, 255, 255, 0.62);
+	--lg-surface-strong: rgba(255, 255, 255, 0.82);
+	--lg-line: rgba(11, 87, 208, 0.1);
+	--lg-line-strong: rgba(11, 87, 208, 0.16);
+	--lg-shadow: 0 8px 30px -14px rgba(11, 87, 208, 0.22);
+	--lg-shadow-strong: 0 24px 60px -24px rgba(11, 87, 208, 0.3);
+	--lg-focus: rgba(0, 199, 129, 0.55);
+	--lg-ambient:
+		radial-gradient(ellipse 70% 55% at 0% 0%, rgba(11, 87, 208, 0.07), transparent 70%),
+		radial-gradient(ellipse 55% 45% at 100% 100%, rgba(0, 199, 129, 0.05), transparent 70%),
+		linear-gradient(180deg, #f8fafc 0%, #f1f4f8 100%);
+}
+
+html.liquid.dark {
+	--lg-surface: rgba(16, 22, 34, 0.6);
+	--lg-surface-strong: rgba(16, 22, 34, 0.82);
+	--lg-line: rgba(255, 255, 255, 0.08);
+	--lg-line-strong: rgba(255, 255, 255, 0.14);
+	--lg-shadow: 0 8px 30px -14px rgba(0, 0, 0, 0.5);
+	--lg-shadow-strong: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+	--lg-focus: rgba(0, 199, 129, 0.5);
+	--lg-ambient:
+		radial-gradient(ellipse 70% 55% at 0% 0%, rgba(11, 87, 208, 0.22), transparent 70%),
+		linear-gradient(180deg, #0c111a 0%, #080b12 100%);
+}
+
+/* Ambient field behind everything */
+html.liquid body {
+	background: transparent;
+}
+
+html.liquid body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background: var(--lg-ambient);
+}
+
+html.liquid #app-shell {
+	background: transparent;
+}
+
+/* Shared blur */
+html.liquid #sidebar,
+html.liquid .liquid-input,
+html.liquid .liquid-panel,
+html.liquid .liquid-bubble,
+html.liquid [data-menu-content],
+html.liquid [data-select-content],
+html.liquid [data-popover-content],
+html.liquid [data-combobox-content],
+html.liquid [data-context-menu-content],
+html.liquid .tippy-box[data-theme~='dark'],
+html.liquid [data-sonner-toast] {
+	-webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+	backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate));
+}
+
+/* Sidebar: one frosted pane, one hairline */
+html.liquid #sidebar {
+	background-color: var(--lg-surface);
+	border-right: 1px solid var(--lg-line);
+	box-shadow: none;
+}
+
+/* Top bar: soft blur band that content scrolls beneath */
+html.liquid .liquid-nav {
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
+	-webkit-mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
+	mask-image: linear-gradient(180deg, #000 50%, transparent 100%);
+	background: linear-gradient(180deg, var(--lg-surface) 0%, transparent 100%);
+}
+
+/* Composer: the glass capsule. One border, one shadow. */
+html.liquid .liquid-input {
+	border-radius: 1.75rem;
+	background-color: var(--lg-surface-strong);
+	border: 1px solid var(--lg-line-strong);
+	box-shadow: var(--lg-shadow);
+	transition:
+		box-shadow 0.2s ease,
+		border-color 0.2s ease;
+}
+
+html.liquid .liquid-input:hover {
+	border-color: var(--lg-line-strong);
+}
+
+html.liquid .liquid-input:focus-within {
+	border-color: var(--lg-focus);
+	box-shadow: var(--lg-shadow);
+}
+
+/* Dialogs */
+html.liquid .modal {
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
+	background-color: rgba(0, 24, 48, 0.28);
+}
+
+html.liquid .liquid-panel {
+	background-color: var(--lg-surface-strong);
+	border: 1px solid var(--lg-line);
+	box-shadow: var(--lg-shadow-strong);
+}
+
+/* User message bubble */
+html.liquid .liquid-bubble {
+	background-color: var(--lg-surface);
+	border: 1px solid var(--lg-line);
+}
+
+/* Menus, popovers, tooltips, toasts */
+html.liquid [data-menu-content],
+html.liquid [data-select-content],
+html.liquid [data-popover-content],
+html.liquid [data-combobox-content],
+html.liquid [data-context-menu-content] {
+	background-color: var(--lg-surface-strong);
+	border: 1px solid var(--lg-line);
+	box-shadow: var(--lg-shadow-strong);
+}
+
+html.liquid .tippy-box[data-theme~='dark'] {
+	background-color: rgba(10, 16, 28, 0.82);
+	border-color: rgba(255, 255, 255, 0.1);
+}
+
+html.liquid [data-sonner-toast] {
+	border-radius: 1rem;
+	border: 1px solid var(--lg-line);
+	box-shadow: var(--lg-shadow);
+}
+
+/* Primary actions stay flat Trust Blue (light) / white (dark); only a soft shadow is added. */
+html.liquid:not(.dark) button.bg-black,
+html.liquid:not(.dark) a.bg-black,
+html.liquid:not(.dark) [role='button'].bg-black,
+html.liquid:not(.dark) button.bg-gray-900,
+html.liquid:not(.dark) a.bg-gray-900 {
+	box-shadow: 0 6px 18px -10px rgba(11, 87, 208, 0.5);
+}
+
+/* Fallbacks: no backdrop-filter support, or the user prefers less transparency */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+	html.liquid {
+		--lg-surface: rgba(255, 255, 255, 0.94);
+		--lg-surface-strong: rgba(255, 255, 255, 0.97);
+	}
+
+	html.liquid.dark {
+		--lg-surface: rgba(16, 22, 34, 0.95);
+		--lg-surface-strong: rgba(16, 22, 34, 0.98);
+	}
+}
+
+@media (prefers-reduced-transparency: reduce) {
+	html.liquid {
+		--lg-blur: 0px;
+		--lg-surface: rgba(255, 255, 255, 0.97);
+		--lg-surface-strong: #fff;
+	}
+
+	html.liquid.dark {
+		--lg-surface: rgba(16, 22, 34, 0.98);
+		--lg-surface-strong: #101622;
+	}
 }

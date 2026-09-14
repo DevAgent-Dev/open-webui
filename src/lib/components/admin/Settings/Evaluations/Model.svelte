@@ -30,7 +30,7 @@
 				<img
 					src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${model.id}`}
 					alt={model.name}
-					class="size-8 rounded-full object-cover shrink-0"
+					class="size-8 shrink-0 rounded-full object-contain"
 				/>
 
 				<div class="w-full flex flex-col">

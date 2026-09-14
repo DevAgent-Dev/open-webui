@@ -2578,18 +2578,21 @@ async def process_chat_payload(request, form_data, user, metadata, model):
     # Model "Knowledge" handling
     user_message = get_last_user_message(form_data['messages'])
     model_knowledge = model.get('info', {}).get('meta', {}).get('knowledge', False)
+    model_capabilities = model.get('info', {}).get('meta', {}).get('capabilities') or {}
+    legacy_function_calling = metadata.get('params', {}).get('function_calling') == 'legacy'
 
-    if model_knowledge and metadata.get('params', {}).get('function_calling') == 'legacy':
-        await event_emitter(
-            {
-                'type': 'status',
-                'data': {
-                    'action': 'knowledge_search',
-                    'query': user_message,
-                    'done': False,
-                },
-            }
-        )
+    if model_knowledge and (legacy_function_calling or model_capabilities.get('file_context', True)):
+        if legacy_function_calling:
+            await event_emitter(
+                {
+                    'type': 'status',
+                    'data': {
+                        'action': 'knowledge_search',
+                        'query': user_message,
+                        'done': False,
+                    },
+                }
+            )
 
         knowledge_files = []
         for item in model_knowledge:
@@ -2614,7 +2617,18 @@ async def process_chat_payload(request, form_data, user, metadata, model):
                 knowledge_files.append(item)
 
         files = form_data.get('files', [])
-        files.extend(knowledge_files)
+        attached_ids = {
+            (item.get('type'), item.get('id'))
+            for item in files
+            if isinstance(item, dict) and item.get('type') and item.get('id')
+        }
+        for item in knowledge_files:
+            key = (item.get('type'), item.get('id'))
+            if all(key) and key in attached_ids:
+                continue
+            files.append(item)
+            if all(key):
+                attached_ids.add(key)
         form_data['files'] = files
 
     variables = form_data.pop('variables', None)

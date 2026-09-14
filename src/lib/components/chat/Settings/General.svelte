@@ -13,6 +13,7 @@
 	import UserSettingRow from './UserSettingRow.svelte';
 	import UserSettingSection from './UserSettingSection.svelte';
 	import SettingsSelect from '$lib/components/common/SettingsSelect.svelte';
+	import Switch from '$lib/components/common/Switch.svelte';
 	export let saveSettings: Function;
 	export let getModels: Function;
 
@@ -112,6 +113,7 @@
 
 	onMount(async () => {
 		selectedTheme = localStorage.theme ?? 'system';
+		liquidGlass = localStorage.liquid !== 'off';
 
 		languages = await getLanguages();
 
@@ -189,6 +191,12 @@
 		console.log(_theme);
 	};
 
+	let liquidGlass = true;
+	const liquidGlassHandler = (enabled: boolean) => {
+		localStorage.liquid = enabled ? 'on' : 'off';
+		document.documentElement.classList.toggle('liquid', enabled);
+	};
+
 	const themeChangeHandler = (_theme: string) => {
 		theme.set(_theme);
 		localStorage.setItem('theme', _theme);
@@ -219,6 +227,19 @@
 						<option value="her">🌷 Her</option>
 					{/if}
 				</SettingsSelect>
+			</UserSettingRow>
+
+			<UserSettingRow
+				label={$i18n.t('Liquid Glass')}
+				description={$i18n.t(
+					'Translucent, blurred surfaces over an ambient brand background. Turn off for flat, high-contrast panels.'
+				)}
+			>
+				<Switch
+					bind:state={liquidGlass}
+					ariaLabel={$i18n.t('Liquid Glass')}
+					on:change={(e) => liquidGlassHandler(e.detail)}
+				/>
 			</UserSettingRow>
 
 			<UserSettingRow
